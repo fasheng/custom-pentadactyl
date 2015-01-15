@@ -189,5 +189,13 @@ map <Leader>T :expandurl<Space>
 map <C-,> -ex autoproxy disable
 map <C-.> -ex autoproxy global
 
+" tab groups
+map <Leader>gn :tgroup-new<Space>
+map <Leader>go :tgroup-open<Space>
+map <Leader>gx :tgroup-delete<Space>
+map <Leader>gs :tgroup-switch<Space>
+map <Leader>gm :tgroup-move<Space>
+map <Leader>gr :tgroup-title<Space>
+
 
 " vim: set ft=pentadactyl:
