@@ -21,7 +21,7 @@
 let CANVAS_ID = 'e37162';
 let ARTICLE_ID = 'd42809';
 let KINDLE_MODE = 'k';
-let KINDLE_MODENAME = '你不可能输入这个';
+let KINDLE_MODENAME = 'K';
 let MAP_PREFIX = ',';
 
 let STYLE_HIGHCONTRAST = literal(function() /*
