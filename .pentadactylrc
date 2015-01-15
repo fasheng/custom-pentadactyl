@@ -1,0 +1,193 @@
+"1.2pre-hg7138-default
+
+loadplugins '\.(js|penta)$'
+group user
+
+" General
+" =======
+set runtimepath=~/.mozilla/pentadactyl,~/.pentadactyl
+set guioptions-=br
+set scrollsteps=1
+set defsearch=g
+set suggestengines=g
+set hlfind
+set complete=search,location,file
+set editor='emacsclient --create-frame --alternate-editor=gvim --eval "(progn (find-file \"<file>\") (goto-line <line>) (move-to-column <column>))"'
+
+" TODO disable input method in command line
+style -name commandline-ime chrome://* #dactyl-commandline-command input {ime-mode: inactive;}
+
+" hints
+" set hintkeys='asdfjklgheriop'
+set hintkeys='abcdefghijklmnopqrstuvwxyz'
+hi Hint font-size:14px; font-weight:bold; margin:-.2ex; padding:0 1px 0 1px; border:1px solid rgba(0, 0, 0, .5); border-radius:3px; boder-shadow:rgba(0, 0, 0, 0.3) 0px 3px 7px 0px; background:rgba(255, 248, 231, 1.0); color:black; text-transform:uppercase;
+
+" next and previous pagte
+set nextpattern=\s*下一页|下一张|下一篇|下页|后页\s*,^\bnext\b,\\bnext\\b,^>$,^(>>|»)$,^(>|»),(>|»)$,\\bmore\\b
+set previouspattern=\s*上一页|上一张|上一篇|上页|前页\s*,^\bprev|previous\b,\\bprev|previous\\b,^<$,^(<<|«)$,^(<|«),(<|«)$
+
+" passkeys, site-filter
+" set passkeys=www\.google\.com/reader/:jkovA
+" set passkeys=https:'//mail.google.com|www.google.com/reader/:jk' 
+
+" qmark
+qmark a https://tower.im | https://mail.google.com
+
+" zoom
+set! zoom.maxPercent=3000
+
+" show tab bar and status bar in fullscreen mode
+set! browser.fullscreen.autohide=false
+autocmd! Fullscreen * :set guioptions+=s
+
+" Color Theme
+" ===========
+colorscheme zenburn-vimium
+
+" Open and Search
+" ===============
+" remap o and t, if url or text selected, open or search it
+map o -js content.getSelection().toString()!=""?dactyl.execute(":open "+ content.getSelection()):CommandExMode().open("open ")
+map t -js content.getSelection().toString()!=""?dactyl.execute(":tabopen "+ content.getSelection()):CommandExMode().open("tabopen ")
+
+" searching selection text and select engine
+com! mysearchselection -nargs=? -complete=search exe 't <args> ' + content.getSelection()
+map s :mysearchselection<Space> 
+
+" switch search engine
+com! myswitchsearchengine -nargs=? -complete=search exe 't <args> ' + (buffer.lastInputField?buffer.lastInputField.value:'')
+map S gi<Esc>:myswitchsearchengine<Space>
+
+" search site
+com! mysearchsite -nargs=* exe "t http://www.google.com/search?q=" + encodeURIComponent("<args>") + "&sitesearch=" + window.content.location.hostname
+com! mysearchsitebaidu -nargs=* exe "t http://www.baidu.com/s?ie=utf-8&word=" + encodeURIComponent("<args> site:" + window.content.location.hostname);
+
+" Keybindings
+" ===========
+map -modes=n,v j -builtin 5j
+map -modes=n,v k -builtin 5k
+
+map -modes=n,v = -builtin +
+
+" close tabs
+map d <Nop>
+map D <Nop>
+map x -builtin d
+map X -builtin D
+
+" reload and stop page
+map <C-r> <Nop>
+map r :reload<CR>
+map c :stop<CR>
+
+" keybindings for command-line
+map -modes=c <C-S-p> <Up>
+map -modes=c <C-S-n> <Down>
+map -modes=c <C-,> <Up>
+map -modes=c <C-.> <Down>
+
+" switch tabs/buffers
+map -modes=n,v <C-h> gT
+map -modes=n,v <C-l> gt
+" map -modes=i <C-h> <Esc>gT
+map -modes=i <C-l> <Esc>gt
+map -modes=i <C-p> <Esc>gT
+map -modes=i <C-n> <Esc>gt
+map <C-/> -builtin <C-^>
+map <C-S-h> :tabmove -1<CR>
+map <C-S-l> :tabmove +1<CR>
+map <C-r>m :buffer! mail<CR>
+map <C-r>t :buffer! tower<CR>
+
+" copy, cut, paste, redo and select
+map -modes=n,v,i,c <C-c> <Pass>
+map -modes=i,c <C-y> -builtin <C-v><C-v>
+map -modes=i,c <C-x> <Pass>
+map -modes=i,c <C-z> <Pass>
+map -modes=i,c <C-r> -builtin <C-t><C-r><Esc>
+map -modes=n <C-a> <Pass>
+map -modes=i,c <C-g> -builtin <Esc>
+
+" general keybindings in text fields and command-line
+map -modes=i,c <C-f> -builtin <Right>
+map -modes=i,c <C-b> -builtin <Left>
+map -modes=i,c <C-a> -builtin <C-t>0<Esc>
+map -modes=i,c <C-e> -builtin <C-t>$<Esc>
+map -modes=i,c <C-d> -builtin <C-t>x<Esc>
+map -modes=i,c <C-h> -builtin <C-t>hx<Esc>
+map -modes=i,c <A-f> -builtin <C-t>e<Esc>
+map -modes=i,c <A-b> -builtin <C-t>b<Esc>
+map -modes=i,c <A-d> -builtin <C-t>dw<Esc>
+map -modes=i,c <C-w> -builtin <C-t>vbx<Esc><Esc>
+" FIXME: could not paste content after C-k
+map -modes=i,c <C-k> -builtin <C-t>D<Esc>
+map -modes=i,c <C-u> -builtin <C-t>vggx<Esc><Esc>
+
+" Keybindings with leader
+" ======================
+" TODO
+" map <Leader>a -arg increment-url-path
+" map <Leader>x -arg decrement-url-path
+
+" switch styles
+map <Leader>s :styletoggle -name <A-Tab>
+
+" copy and paste multiple urls
+set urlseparator='(\||\n+)'
+map <Leader>Y -description "Yank all locations to the clipboard" -ex yank :tabdo :echo buffer.uri.spec
+js <<EOF
+tabs.openURLs = function() {
+    let urls = dactyl.clipboardRead();
+    let urlsArray = urls.split(options.get("urlseparator").value);
+    for(var i in urlsArray) {
+        dactyl.open(urlsArray[i], { from: "paste", where: dactyl.NEW_TAB });
+    }
+};
+EOF
+map <Leader>P -description "Open urls based on the current clipboard contents" -js tabs.openURLs()
+
+" open special pages
+map <Leader>zq :preferences<CR>
+map <Leader>za :addons<CR>
+map <Leader>zd :downloads<CR>
+map <Leader>zH :history<CR>
+map <Leader>zr :res<CR>
+map <Leader>zz :stop<CR>
+map <Leader>zc tabout:config<CR>
+map <Leader>zs tabout:support<CR>
+map <Leader>zh tabout:home<CR>
+
+" Custom Commands
+" ===============
+" toggle highline keywords
+com! mytogglehl set hlfind!
+
+" view and edit rc file
+" com! myrc -description "Open .pentadactylrc file" -js gBrowser.selectedTab = gBrowser.addTab("file:///"+Components.classes["@mozilla.org/file/directory_service;1"].getService(Components.interfaces.nsIProperties).get("ProfD", Components.interfaces.nsIFile).path+"/.pentadactylrc");
+com! myrc -description "Open .pentadactylrc file" :tabopen ~/.pentadactylrc
+
+":com! myerc -description "Edit .pentadactylrc file" -js editor.editFileExternally(Components.classes["@mozilla.org/file/directory_service;1"].getService(Components.interfaces.nsIProperties).get("ProfD", Components.interfaces.nsIFile).path+"/.pentadactylrc")
+com! myerc -description "Edit .pentadactylrc file" -js editor.editFileExternally("file://~/.pentadactylrc")
+
+" show help page in new tab
+com! mytabhelp -description "Show help messages in new tab" -nargs=? -complete=help -literal=0 -js dactyl.execute(":tabopen");dactyl.execute(":help " + args)
+map <Leader>h :mytabhelp<Space>
+
+" AUto Commands
+" =============
+autocmd LocationChange reddit.com set hinttags-=[onclick]
+
+" Setup plugins
+" =======================
+loadplugins
+map <Leader>d -ex dict
+map <Leader>y -ex copy titleAndURL
+map <Leader>t -ex tinyurl
+map <Leader>T :expandurl<Space>
+
+" switch proxy
+map <C-,> -ex autoproxy disable
+map <C-.> -ex autoproxy global
+
+
+" vim: set ft=pentadactyl:
