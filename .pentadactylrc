@@ -179,6 +179,15 @@ map <Leader>h :mytabhelp<Space>
 " =============
 autocmd LocationChange reddit.com set hinttags-=[onclick]
 
+" TODO epub reader
+" autocmd LocationChange !about:epubreader*,* silent unmap h
+" autocmd LocationChange !about:epubreader*,* silent unmap l
+" autocmd LocationChange !about:epubreader*,* silent unmap L
+" autocmd LocationChange about:epubreader* map h -builtin <Right>
+" autocmd LocationChange about:epubreader* map l -builtin <Left>
+" autocmd LocationChange about:epubreader* map L -builtin <Del>
+" autocmd LocationChange about:epubreader* :normal! <C-z>
+
 " Setup plugins
 " =======================
 loadplugins
