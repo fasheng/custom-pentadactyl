@@ -69,6 +69,9 @@ map -modes=n,v k -builtin 5k
 
 map -modes=n,v = -builtin +
 
+" map C-g to Esc
+map -modes=n,v,i,t,c,o <C-g> -builtin <Esc>
+
 " close tabs
 map d <Nop>
 map D <Nop>
@@ -91,8 +94,8 @@ map -modes=n,v <C-h> gT
 map -modes=n,v <C-l> gt
 " map -modes=i <C-h> <Esc>gT
 map -modes=i <C-l> <Esc>gt
-map -modes=i <C-p> <Esc>gT
-map -modes=i <C-n> <Esc>gt
+map -modes=i <C-p> -builtin <Up>
+map -modes=i <C-n> -builtin <Down>
 map <C-/> -builtin <C-^>
 map <C-S-h> :tabmove -1<CR>
 map <C-S-l> :tabmove +1<CR>
@@ -106,7 +109,6 @@ map -modes=i,c <C-x> <Pass>
 map -modes=i,c <C-z> <Pass>
 map -modes=i,c <C-r> -builtin <C-t><C-r><Esc>
 map -modes=n <C-a> <Pass>
-map -modes=i,c <C-g> -builtin <Esc>
 
 " general keybindings in text fields and command-line
 map -modes=i,c <C-f> -builtin <Right>
