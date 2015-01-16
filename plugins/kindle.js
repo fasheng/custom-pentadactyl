@@ -488,7 +488,7 @@ var Kindle = function () {
         let node = document.querySelector("meta[name='description']");
         if (node)
             description = node.getAttribute("content") || '';
-        let node = document.querySelector("meta[name='keywords']");
+        node = document.querySelector("meta[name='keywords']");
         if (node)
             keywords = node.getAttribute("content") || '';
         return Array.some([title, description, keywords], function(text) {

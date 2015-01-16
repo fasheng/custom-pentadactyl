@@ -74,8 +74,8 @@ let hintSpecs = {
     "selectend": [false, true]
 }
 
-function defineHintMode(mode, key) {
-    let key = key || options["carethint"][mode];
+function defineHintMode(mode, argkey) {
+    let key = argkey || options["carethint"][mode];
     if (!key)
         return;
     let spec = hintSpecs[mode];

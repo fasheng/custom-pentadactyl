@@ -94,7 +94,7 @@ function getObjects() {
             general.push("*@" + obj.url);
             general.push("*@" + obj.site);
         }
-    let sites = buffer.allFrames().map(function (f) f.location.host);
+    sites = buffer.allFrames().map(function (f) f.location.host);
     for (let filter in values(options["noscript-objects"])) {
         let host = util.getHost(util.split(filter, /@/, 2)[1]);
         if (sites.some(function (s) s == host))
