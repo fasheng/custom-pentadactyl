@@ -175,6 +175,32 @@ com! myerc -description "Edit .pentadactylrc file" -js editor.editFileExternally
 com! mytabhelp -description "Show help messages in new tab" -nargs=? -complete=help -literal=0 -js dactyl.execute(":tabopen");dactyl.execute(":help " + args)
 map <Leader>h :mytabhelp<Space>
 
+" org protocol
+js <<EOF
+var orgCapture = function() {
+    var orgProtoString = 'org-protocol://capture://' +
+        encodeURIComponent(gBrowser.currentURI.spec) + '/' +
+        encodeURIComponent(gBrowser.contentWindow.document.title) + '/' +
+        encodeURIComponent(content.window.getSelection());
+    gBrowser.loadURI(orgProtoString);
+}
+var orgStoreLink = function() {
+    var orgProtoString = 'org-protocol://store-link://' +
+        encodeURIComponent(gBrowser.currentURI.spec) + '/' +
+        encodeURIComponent(gBrowser.contentWindow.document.title);
+    gBrowser.loadURI(orgProtoString);
+}
+var orgOpenSource = function() {
+    var orgProtoString = 'org-protocol://open-source://' +
+        encodeURIComponent(gBrowser.currentURI.spec);
+    gBrowser.loadURI(orgProtoString);
+}
+EOF
+map <Leader>c -js orgCapture()
+map <Leader>C -js orgStoreLink()
+map <Leader>S -js orgOpenSource()
+        
+
 " AUto Commands
 " =============
 autocmd LocationChange reddit.com set hinttags-=[onclick]
