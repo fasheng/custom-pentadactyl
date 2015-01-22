@@ -10,6 +10,7 @@ set guioptions-=br
 set scrollsteps=1
 set defsearch=g
 set suggestengines=g
+set maxitems=15
 set hlfind
 set complete=search,location,file
 set editor='emacsclient --create-frame --alternate-editor=gvim --eval "(progn (find-file \"<file>\") (goto-line <line>) (move-to-column <column>))"'
