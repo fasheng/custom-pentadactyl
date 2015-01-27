@@ -67,6 +67,8 @@ com! mysearchsitebaidu -nargs=* exe "t http://www.baidu.com/s?ie=utf-8&word=" + 
 " ===========
 map -modes=n,v j -builtin 5j
 map -modes=n,v k -builtin 5k
+map -modes=n,v h -builtin 5h
+map -modes=n,v l -builtin 5l
 
 map -modes=n,v = -builtin +
 
