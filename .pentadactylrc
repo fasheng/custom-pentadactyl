@@ -220,7 +220,8 @@ autocmd LocationChange reddit.com set hinttags-=[onclick]
 " Setup plugins
 " =======================
 loadplugins
-map <Leader>d -ex dict
+map <Leader>dd -ex dict
+map <Leader>dz -ex dictz
 map <Leader>y -ex copy titleAndURL
 map <Leader>t -ex tinyurl
 map <Leader>T :expandurl<Space>
