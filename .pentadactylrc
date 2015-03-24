@@ -29,10 +29,10 @@ set previouspattern=\s*上一页|上一张|上一篇|上页|前页\s*,^\bprev|pr
 
 " passkeys, site-filter
 " set passkeys=www\.google\.com/reader/:jkovA
-" set passkeys=https:'//mail.google.com|www.google.com/reader/:jk' 
+" set passkeys=https:'//mail.google.com|www.google.com/reader/:jk'
 
 " qmark
-qmark a https://tower.im | https://mail.google.com
+qmark a https://mail.google.com | https://www.google.com
 
 " zoom
 set! zoom.maxPercent=3000
@@ -53,7 +53,7 @@ map t -js content.getSelection().toString()!=""?dactyl.execute(":tabopen "+ cont
 
 " searching selection text and select engine
 com! mysearchselection -nargs=? -complete=search exe 't <args> ' + content.getSelection()
-map s :mysearchselection<Space> 
+map s :mysearchselection<Space>
 
 " switch search engine
 com! myswitchsearchengine -nargs=? -complete=search exe 't <args> ' + (buffer.lastInputField?buffer.lastInputField.value:'')
@@ -202,7 +202,7 @@ EOF
 map <Leader>c -js orgCapture()
 map <Leader>C -js orgStoreLink()
 map <Leader>S -js orgOpenSource()
-        
+
 
 " AUto Commands
 " =============
