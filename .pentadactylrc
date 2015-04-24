@@ -99,7 +99,7 @@ map -modes=n,v <C-l> gt
 map -modes=i <C-l> <Esc>gt
 map -modes=i <C-p> -builtin <Up>
 map -modes=i <C-n> -builtin <Down>
-map <C-/> -builtin <C-^>
+map <C-;> -builtin <C-^>
 map <C-S-h> :tabmove -1<CR>
 map <C-S-l> :tabmove +1<CR>
 map <C-r>m :buffer! mail<CR>
