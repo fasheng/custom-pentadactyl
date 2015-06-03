@@ -1,4 +1,4 @@
-"1.2pre-hg7138-default
+"1.2pre-hg7166-default
 
 loadplugins '\.(js|penta)$'
 group user
@@ -6,11 +6,11 @@ group user
 " General
 " =======
 set runtimepath=~/.mozilla/pentadactyl,~/.pentadactyl
-set guioptions-=br
+set guioptions=Csn
 set scrollsteps=1
 set defsearch=g
 set suggestengines=g
-set maxitems=15
+set maxitems=12
 set hlfind
 set complete=search,location,file
 set editor='emacsclient --create-frame --alternate-editor=gvim --eval "(progn (find-file \"<file>\") (goto-line <line>) (move-to-column <column>))"'
@@ -87,10 +87,8 @@ map r :reload<CR>
 map c :stop<CR>
 
 " keybindings for command-line
-map -modes=c <C-S-p> <Up>
-map -modes=c <C-S-n> <Down>
-map -modes=c <C-,> <Up>
-map -modes=c <C-.> <Down>
+map -modes=c <C-n> <Tab>
+map -modes=c <C-p> <S-Tab>
 
 " switch tabs/buffers
 map -modes=n,v <C-h> gT
@@ -176,6 +174,7 @@ com! myerc -description "Edit .pentadactylrc file" -js editor.editFileExternally
 
 " show help page in new tab
 com! mytabhelp -description "Show help messages in new tab" -nargs=? -complete=help -literal=0 -js dactyl.execute(":tabopen");dactyl.execute(":help " + args)
+
 map <Leader>h :mytabhelp<Space>
 
 " org protocol
