@@ -1338,9 +1338,10 @@ let dict = {
         dict.args = args;
         let keyword = args[0] || '';
         keyword = keyword.trim();
-        if (keyword.length == 0)
-            keyword = dict._selection() || '';
-        keyword = keyword.trim();
+        // TODO: do not use selected words
+        // if (keyword.length == 0)
+        //     keyword = dict._selection() || '';
+        // keyword = keyword.trim();
         let engine = dict._route();
         let lp = args['-l'] || options['dict-langpair'][engine] || options.get('dict-langpair').defaultValue[engine] || '';
 
