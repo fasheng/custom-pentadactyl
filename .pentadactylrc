@@ -24,8 +24,8 @@ set hintkeys='abcdefghijklmnopqrstuvwxyz'
 hi Hint font-size:14px; font-weight:bold; margin:-.2ex; padding:0 1px 0 1px; border:1px solid rgba(0, 0, 0, .5); border-radius:3px; boder-shadow:rgba(0, 0, 0, 0.3) 0px 3px 7px 0px; background:rgba(255, 248, 231, 1.0); color:black; text-transform:uppercase;
 
 " next and previous pagte
-set nextpattern=\s*下一页|下一张|下一篇|下页|后页\s*,^\bnext\b,\\bnext\\b,^>$,^(>>|»)$,^(>|»),(>|»)$,\\bmore\\b
-set previouspattern=\s*上一页|上一张|上一篇|上页|前页\s*,^\bprev|previous\b,\\bprev|previous\\b,^<$,^(<<|«)$,^(<|«),(<|«)$
+set nextpattern=\s*下一页|下一頁|下一张|下一張|下一篇|下一篇|下页|下頁|后页|後頁\s*,^\bnext\b,\\bnext\\b,^>$,^(>>|»)$,^(>|»),(>|»)$,\\bmore\\b
+set previouspattern=\s*上一页|上一頁|上一张|上一張|上一篇|上一篇|上页|上頁|前页|前頁\s*,^\bprev|previous\b,\\bprev|previous\\b,^<$,^(<<|«)$,^(<|«),(<|«)$
 
 " passkeys, site-filter
 " set passkeys=www\.google\.com/reader/:jkovA
