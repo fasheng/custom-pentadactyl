@@ -225,9 +225,20 @@ map <Leader>y -ex copy titleAndURL
 map <Leader>t -ex tinyurl
 map <Leader>T :expandurl<Space>
 
-" switch proxy
-map <C-,> -ex autoproxy disable
-map <C-.> -ex autoproxy global
+" proxy
+map <C-,> -ex set-proxy direct
+map <C-.> -ex set-proxy "socks://127.0.0.1:8088"
+map <C->> -ex set-proxy "http://10.0.0.42:7778/pac"
+
+" TODO autoproxy
+" map <C-,> -ex autoproxy disable
+" map <C-.> -ex autoproxy global
+
+" TODO foxyproxy
+" -- sshd 4250302518
+" -- company-pac 1564144383
+" map <C-,> -js FoxyProxy.setMode("disabled", false, false)
+" map <C-.> -js FoxyProxy.setMode(4250302518, false, false)
 
 " tab groups
 map <Leader>gn :tgroup-new<Space>
