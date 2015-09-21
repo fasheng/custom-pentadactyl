@@ -18,10 +18,10 @@
  *
  * Installation:
  *    place this file in "~/.pentadactyl/plugins/"; that's all.
- * 
+ *
  * Copyright:
  *    Stephen Blott (smblott@gmail.com)
- * 
+ *
  * License:
  *    MIT License
  *    http://opensource.org/licenses/mit-license.php
@@ -148,7 +148,7 @@ var pad = // is there really no sprintf() workalike in Javascript?
                   + Array(len - str.toString().length + 1).join(" ");
     }
 
-var assert_exception = 
+var assert_exception =
     function (message) { this.message = message; };
 
 assert_exception.prototype.toString
@@ -179,11 +179,11 @@ var DIRECT                 = 0,
     known_proxies          = [],
     proxy_descs            = [];
 
-    proxy_descs[DIRECT]    = "direct connection",
-    proxy_descs[MANUAL]    = "manual proxy configuration",
-    proxy_descs[PAC]       = "proxy auto-configuration [PAC]",
-    proxy_descs[AUTOMATIC] = "auto-detect proxy settings",
-    proxy_descs[SYSTEM]    = "use system proxy settings";
+    proxy_descs[DIRECT]       = "direct connection",
+    proxy_descs[MANUAL]       = "manual http proxy configuration",
+    proxy_descs[PAC]          = "proxy auto-configuration [PAC]",
+    proxy_descs[AUTOMATIC]    = "auto-detect proxy settings",
+    proxy_descs[SYSTEM]       = "use system proxy settings";
 
 var proxy_desc             = function (type) proxy_descs[type]
                                                ? "type=" + type + " (" + proxy_descs[type] + ")"
@@ -233,10 +233,10 @@ var proxy_type =
             obj.uri = parseUri(obj[0]);
             if ( obj.uri.protocol )
             {
-                if ( obj.uri.protocol == "http"
-                        && obj.uri.host
-                        && obj.uri.port
-                        && ( obj.uri.path == "/" || ! obj.uri.path )
+                if ( obj.uri.protocol
+                     && obj.uri.host
+                     && obj.uri.port
+                     && ( obj.uri.path == "/" || ! obj.uri.path )
                    )
                 {
                     obj.proxy_type   = MANUAL;
@@ -245,7 +245,7 @@ var proxy_type =
                     obj.proxy_except = obj.slice(1).join(" ");
                     obj[0]           = obj[0].replace(/\/+$/, "");
                 }
-                if ( /\.pac$/.test(obj.uri.path) || obj.force_pac )
+                if ( /pac$/.test(obj.uri.path) || obj.force_pac )
                     obj.proxy_type = PAC;
                 if ( proxy_type_uri(obj.proxy_type) )
                 {
@@ -273,13 +273,26 @@ var current_proxy =
         switch ( prefs.get('network.proxy.type') )
         {
         case MANUAL:
-            proxy = [  "http://"
-                     +  prefs.get('network.proxy.http')
-                     + ":"
-                     +  prefs.get('network.proxy.http_port')
-                     ] .concat( prefs.get('network.proxy.no_proxies_on')
-                              .split(/[, ]+/)
-                              .filter( identity ) );
+            if ( prefs.get('network.proxy.http') )
+            {
+                proxy = [  "http://"
+                           +  prefs.get('network.proxy.http')
+                           + ":"
+                           +  prefs.get('network.proxy.http_port')
+                        ] .concat( prefs.get('network.proxy.no_proxies_on')
+                                   .split(/[, ]+/)
+                                   .filter( identity ) );
+            }
+            else
+            {
+                proxy = [  "socks://"
+                           +  prefs.get('network.proxy.socks')
+                           + ":"
+                           +  prefs.get('network.proxy.socks_port')
+                        ] .concat( prefs.get('network.proxy.no_proxies_on')
+                                   .split(/[, ]+/)
+                                   .filter( identity ) );
+            }
             break;
         case PAC:
             proxy = [ prefs.get('network.proxy.autoconfig_url') ];
@@ -406,11 +419,27 @@ var real_set_proxy =
         {
         case MANUAL:
             add_proxy(args); // add the new setting to list
+            args.uri = parseUri(args);
             prefs.set('network.proxy.type',                 MANUAL);
-            prefs.set('network.proxy.http',                 args.proxy_host);
-            prefs.set('network.proxy.http_port',            args.proxy_port);
             prefs.set('network.proxy.no_proxies_on',        args.proxy_except);
-            prefs.set('network.proxy.share_proxy_settings', true);
+            if ( args.uri.protocol == "http" )
+            {
+                prefs.set('network.proxy.http',                 args.proxy_host);
+                prefs.set('network.proxy.http_port',            args.proxy_port);
+                prefs.set('network.proxy.share_proxy_settings', true);
+            }
+            else
+            {
+                prefs.set('network.proxy.http',                 "");
+                prefs.set('network.proxy.http_port',            0);
+                prefs.set('network.proxy.share_proxy_settings', false);
+                prefs.set('network.proxy.ssl',                  "");
+                prefs.set('network.proxy.ssl_port',             0);
+                prefs.set('network.proxy.ftp',                  "");
+                prefs.set('network.proxy.ftp_port',             0);
+                prefs.set('network.proxy.socks',                args.proxy_host);
+                prefs.set('network.proxy.socks_port',           args.proxy_port);
+            }
             break;
         case PAC:
             add_proxy(args); // add the new setting to list
@@ -829,4 +858,3 @@ group.commands.add( [ "show-proxy", "spx" ],
 //     </plugin>;
 
 /* vim:se sts=4 sw=4 et: */
-
