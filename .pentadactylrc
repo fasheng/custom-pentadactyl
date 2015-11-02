@@ -228,7 +228,7 @@ map <Leader>T :expandurl<Space>
 " proxy
 map <C-,> -ex set-proxy direct
 map <C-.> -ex set-proxy "socks://127.0.0.1:8088"
-map <C->> -ex set-proxy "http://10.0.0.42:7778/pac"
+map <C->> -ex set-proxy "http://10.0.0.42:7777/pac"
 
 " TODO autoproxy
 " map <C-,> -ex autoproxy disable
