@@ -481,9 +481,13 @@ var set_proxy =
             return;
         }
 
-        if ( args.length == 1 )
-            for (var i in nonuri_proxies)
-                args[0] = simple_completer(args[0], nonuri_proxies[i]);
+        // if ( args.length == 1 )
+        //     for (var i in nonuri_proxies)
+        //     {
+        //         // dactyl.echo("-->: " + args[0] + " " + nonuri_proxies[i]);
+        //         args[0] = simple_completer(args[0], nonuri_proxies[i]);
+        //         // dactyl.echo("--|: " + args[0] + " " +  nonuri_proxies[i]);
+        //     }
 
         if ( proxy_type_invalid(proxy_type(args)) ) // note side effect
             return dactyl.echoerr("set-proxy: invalid argument [" + args[0] + "]");

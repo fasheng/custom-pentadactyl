@@ -1,0 +1,7 @@
+./plugins/aardvark-dev.js:143: literal is deprecated: Please use template strings instead.
+./plugins/dict.js:4: literal is deprecated: Please use template strings instead.
+./plugins/http-headers-dev.js:132: HttpObserver#closure is deprecated: Please use bound instead.
+./plugins/jQuery-dev.js:89: literal is deprecated: Please use template strings instead.
+./plugins/kindle.js:27: literal is deprecated: Please use template strings instead.
+./plugins/noscript-dev.js:144: literal is deprecated: Please use template strings instead.
+./plugins/setproxy.js: 139: TypeError: string.indexOf is not a function
