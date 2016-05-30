@@ -5,7 +5,7 @@ group user
 
 " General
 " =======
-set runtimepath=~/.mozilla/pentadactyl,~/.pentadactyl
+set runtimepath=~/.pentadactyl
 set guioptions=Csn
 set scrollsteps=1
 set defsearch=g
