@@ -229,7 +229,7 @@ map <Leader>T :expandurl<Space>
 map <C-,> -ex set-proxy "direct"
 map <C-<> -ex set-proxy "system"
 map <C-.> -ex set-proxy "socks://127.0.0.1:8088"
-map <C->> -ex set-proxy "http://10.0.0.42:7777/pac"
+map <C->> -ex set-proxy "file:///var/cache/gfwlist.pac"
 
 " lantern
 " map <C-.> -ex set-proxy "socks://127.0.0.1:8787"
