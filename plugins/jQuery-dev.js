@@ -86,7 +86,7 @@ userContext.__defineGetter__("$b", function () (content.document.body || content
  * Date: Wed Feb 23 13:55:29 2011 -0500
  */
 let line = Components.stack.lineNumber + 1;
-let code = atob(String.replace(literal(/*
+let code = atob(String.replace(`
 H4sIAOyEmk0CA6x9iZbiRrbgr4DGJy2ZSDLTS0+3yCim1rbf2FXuLvez/UjsF5JCIBASJcjNwL/Mt8yX
 zb03Vgmyym9mfMqJFPty48bdFea3Vbot6ioULIl25q2XzkIR7Rq5vW2qXjYsNj8XVVbfQ+JYxGJY1Zn8
 6XEtOed/G4thJnNxW27/vZD3+70YrkUjq62qEfevDq7VDFst8rCf/MdETKPdnWh6Cc/C4DoYiEHwLIiG

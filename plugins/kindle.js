@@ -24,7 +24,7 @@ let KINDLE_MODE = 'k';
 let KINDLE_MODENAME = 'K';
 let MAP_PREFIX = ',';
 
-let STYLE_HIGHCONTRAST = literal(function() /*
+let STYLE_HIGHCONTRAST = `
     #e37162 {
         position: fixed;
         width: 100%;
@@ -94,7 +94,7 @@ let STYLE_HIGHCONTRAST = literal(function() /*
 
     #d42809 p {
     }
-*/$);
+`;
 
 // I just took this from the firebug.
 // ~/Vcs/fbug-read-only/branches/firebug1.10/content/firebug/lib
@@ -128,7 +128,7 @@ let CSS = {
     }
 };
 
-let RAW_STYLE = literal(function() /*
+let RAW_STYLE = `
         background-color:#FBF0D9;
         top: 0;
         margin: 0 auto;
@@ -138,9 +138,9 @@ let RAW_STYLE = literal(function() /*
         text-align:left;
         opacity: 1.0;
         overflow: auto;
-*/$);
+`;
 
-let STYLE = literal(function() /*
+let STYLE = `
     #e37162 {
         position: fixed;
         width: 100%;
@@ -209,7 +209,7 @@ let STYLE = literal(function() /*
 
     #d42809 p {
     }
-*/$);
+`;
 
 var Theme = {
     default: STYLE,

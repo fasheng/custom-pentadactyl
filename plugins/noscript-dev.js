@@ -141,12 +141,12 @@ var onUnload = overlay.overlayObject(gBrowser, {
     }
 });
 
-highlight.loadCSS(literal(/*
+highlight.loadCSS(`
     NoScriptAllowed         color: green;
     NoScriptBlocked         color: #444; font-style: italic;
     NoScriptTemp            color: blue;
     NoScriptUntrusted       color: #c00; font-style: italic;
-*/));
+`);
 
 let groupProto = {};
 ["temp", "jsPolicy", "untrusted"].forEach(function (group)
@@ -355,11 +355,11 @@ group.options.add(["script"],
         }));
 
 group.styles.add("noscript-menu-order", ["chrome://browser/content/browser.xul"],
-                 literal(/*
+                 `
         #noscript-tbb-popup .scrollbox-innerbox {
             -moz-box-direction: reverse;
         }
-    */));
+    `);
 
 var INFO =
 ["plugin", { name: "noscript",

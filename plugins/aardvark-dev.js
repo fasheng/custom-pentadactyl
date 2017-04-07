@@ -140,7 +140,7 @@ var INFO =
         ["description", { short: "true" },
             ["p", {}, "Show the element's XPath."]]]];
 
-highlight.loadCSS(literal(/*
+highlight.loadCSS(`
     AardvarkDBox;;*  {
         padding: 0;
         border: 1px solid #000;
@@ -293,15 +293,15 @@ group.styles.add("aardvark", "*", literal(/*
         [dactyl|highlight~=AardvarkDBox] a:hover {
 	    color: #00f;
         }
-    */));
+    `);
 
 let images = {
-    close: literal(/*data:image/gif;base64,
+    close: `data:image/gif;base64,
         R0lGODlhEQARAMMPANuywOyNo+wnUfEENPN1kfFLbre0u/78/P7S28ZWcIdsdaJIXolVY7IyTpKS
         mP///yH5BAEAAA8ALAAAAAARABEAAARw8MkJQAAz5yCGHwKhTcVnglhWDqsnlIIxBV5wEC6CdMnU
         FYcgQYAIIjwywIcQbB52HsVDuXRCPQsD1eXEfbJbovP2Ycg64idTGJV4bdB1qeHweYbLlUImAXRO
         ZXUaCYANCoIjBgoLCwyHfCMTBpOREQA7
-    */)
+    `
 };
 
 for (let k in images)
@@ -509,7 +509,7 @@ var Aardvark = Class("Aardvark", {
             return true;
         }
         return false;
-    },	
+    },
 
     narrower: function narrower(elem) {
         if (elem) {
@@ -1207,15 +1207,15 @@ var Aardvark = Class("Aardvark", {
 
     dBoxId: 0,
 
-    alwaysValidElements: RealSet(["applet", "blockquote", "div", "form",
+    alwaysValidElements: new RealSet(["applet", "blockquote", "div", "form",
                                  "h1", "h2", "h3", "iframe", "img", "object",
                                  "p", "table", "td", "th", "tr"]),
 
-    validIfBlockElements: RealSet(["a", "span"]),
+    validIfBlockElements: new RealSet(["a", "span"]),
 
-    validIfNotInlineElements: RealSet(["code", "li", "ol", "pre", "ul"]),
+    validIfNotInlineElements: new RealSet(["code", "li", "ol", "pre", "ul"]),
 
-    leafElems: RealSet(["area", "base", "basefont", "br", "col", "frame", "hr",
+    leafElems: new RealSet(["area", "base", "basefont", "br", "col", "frame", "hr",
                        "img", "input", "isindex", "link", "meta", "param"])
 });
 
@@ -1305,4 +1305,3 @@ group.commands.add(["aardvark"],
 function onUnload() {
     modes.removeMode(modes.AARDVARK);
 }
-
