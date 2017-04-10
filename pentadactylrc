@@ -254,6 +254,6 @@ map <Leader>gr :tgroup-title<Space>
 
 " vim: set ft=pentadactyl:
 
-# Local Variables:
-# mode: dactyl
-# End:
+" Local Variables:
+" mode: dactyl
+" End:
