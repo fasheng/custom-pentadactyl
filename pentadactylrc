@@ -102,27 +102,19 @@ map <C-r>m :buffer! mail<CR>
 map <C-r>t :buffer! tower<CR>
 
 " copy, cut, paste, redo and select
+
+" enable C-c to copy text
 map -modes=n,v,i,c <C-c> <Pass>
-map -modes=i,c <C-y> -builtin <C-v><C-v>
-map -modes=i,c <C-x> <Pass>
-map -modes=i,c <C-z> <Pass>
-map -modes=i,c <C-r> -builtin <C-t><C-r><Esc>
+
+" enable C-a to select all text
 map -modes=n <C-a> <Pass>
 
-" general keybindings in text fields and command-line
-map -modes=i,c <C-f> -builtin <Right>
-map -modes=i,c <C-b> -builtin <Left>
-map -modes=i,c <C-a> -builtin <C-t>0<Esc>
-map -modes=i,c <C-e> -builtin <C-t>$<Esc>
-map -modes=i,c <C-d> -builtin <C-t>x<Esc>
-map -modes=i,c <C-h> -builtin <C-t>hx<Esc>
+map -modes=c <C-b> -builtin <Left>
+map -modes=c <C-f> -builtin <Right>
+map -modes=i,c <C-y> -builtin <C-v><C-v>
+map -modes=i,c <C-z> -builtin <C-v><C-z>
 map -modes=i,c <A-f> -builtin <C-t>e<Esc>
 map -modes=i,c <A-b> -builtin <C-t>b<Esc>
-map -modes=i,c <A-d> -builtin <C-t>dw<Esc>
-map -modes=i,c <C-w> -builtin <C-t>vbx<Esc><Esc>
-" FIXME: could not paste content after C-k
-map -modes=i,c <C-k> -builtin <C-t>D<Esc>
-map -modes=i,c <C-u> -builtin <C-t>vggx<Esc><Esc>
 
 " Keybindings with leader
 " ======================
