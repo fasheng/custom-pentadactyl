@@ -160,6 +160,9 @@ map <Leader>zh tabout:home<CR>
 
 " Custom Commands
 " ===============
+" send <Esc> with closing findbar
+map -modes=n,i <C-S-g> :<Esc><CR>:js getBrowser().getFindBar().close()<CR>
+
 " toggle highline keywords
 com! mytogglehl set hlfind!
 
